@@ -17,8 +17,8 @@ df = pd.read_csv(
 )
 df['TotalCharges'] = np.where(df['TotalCharges'] == ' ', 0, df['TotalCharges'])
 
-dummy_df = pd.get_dummies(df.drop(columns=['customerID']), columns=['gender', "MultipleLines" ,"InternetService" ,"OnlineSecurity" ,"OnlineBackup" ,"DeviceProtection" ,"TechSupport" ,"StreamingTV" ,"StreamingMovies" , "Contract", 'PaymentMethod'])
-X = dummy_df.drop(columns=['Churn'])
+dummy_df = pd.get_dummies(df, columns=['gender', "MultipleLines" ,"InternetService" ,"OnlineSecurity" ,"OnlineBackup" ,"DeviceProtection" ,"TechSupport" ,"StreamingTV" ,"StreamingMovies" , "Contract", 'PaymentMethod'])
+X = dummy_df.drop(columns=['Churn', 'customerID'])
 Y = dummy_df['Churn']
 
 payments = df['PaymentMethod'].value_counts()
